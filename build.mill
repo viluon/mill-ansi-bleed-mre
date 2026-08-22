@@ -1,0 +1,14 @@
+//| mill-version: 1.1.8
+
+package build
+
+import mill.*
+
+def foo: T[Unit] = Task {
+  os.call(cmd = Seq("printf", "\u001b[1mfoo\n"), stdout = os.Inherit)
+}
+
+def bar: T[Unit] = Task {
+  foo()
+  os.call(cmd = Seq("printf", "bar-1\nbar-2\n"), stdout = os.Inherit)
+}
